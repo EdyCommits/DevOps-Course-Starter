@@ -19,7 +19,7 @@ def add():
 @app.route('/add', methods=['POST'])
 def post_item():
     title = request.form.get('title')
-    new_item = session_items.add_item(title=title)
+    session_items.add_item(title=title)
     return redirect('/')
 
 
