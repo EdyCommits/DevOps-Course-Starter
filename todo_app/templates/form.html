@@ -3,7 +3,7 @@
 {% block content %}
   <h4 class="title">New Task</h2>
     <form action="{{ url_for('post_item') }}" method="POST">
-        <input type="text" name="add"/>
+        <input type="text" name="title"/>
         <button type="submit"> Submit </button>
       </form>
 {% endblock %}
