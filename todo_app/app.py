@@ -1,15 +1,17 @@
 from flask import Flask, redirect, render_template, request
 from todo_app.flask_config import Config
 from todo_app.data import session_items
+from todo_app.data.api import TrelloAPI
+
 
 app = Flask(__name__)
-app.config.from_object(Config)
-
+api = TrelloAPI()
 
 @app.route('/')
 def index():
-    items = session_items.get_items()
-    
+    trello = TrelloAPI()
+    items = trello.get_boards()
+    print(items)
     return render_template('index.html', items=items)
 
 @app.route('/add', methods=['GET'])
