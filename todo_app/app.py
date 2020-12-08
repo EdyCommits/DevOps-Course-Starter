@@ -9,9 +9,8 @@ api = TrelloAPI()
 
 @app.route('/')
 def index():
-    trello = TrelloAPI()
-    list_of_items = trello.get_list_of_items()
-    items = trello.to_list(list_of_items)
+    list_of_items = api.get_list_of_items()
+    items = api.to_list(list_of_items)
     print(items)
     return render_template('index.html', items=items)
 
@@ -22,7 +21,8 @@ def add():
 @app.route('/add', methods=['POST'])
 def post_item():
     title = request.form.get('title')
-    session_items.add_item(title=title)
+    print(title)
+    api.add_item(title=title)
     return redirect('/')
 
 
