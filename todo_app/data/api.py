@@ -11,6 +11,7 @@ class TrelloAPI():
     def __init__(self):
         self.object()    
         self.key_and_token = {'key':APIConfig.KEY,'token':APIConfig.TOKEN}
+        # self.to_list(json_response=json_response)
     
     def get_boards(self):
         boards_url = self.TRELLO_URL + '/members/me/boards'
@@ -24,6 +25,26 @@ class TrelloAPI():
         
         for board in json_response:
             print(board['name'])
+    
+    def get_list_of_items(self):
+        boardId = "oIJEvych"
+        cards_url = self.TRELLO_URL + '/boards/' + boardId + '/cards/'
+        print(cards_url)
+        key_and_token = self.key_and_token
+        headers = {"Accept": "application/json"}
+        arguments = {'fields': 'name', 'lists': 'open'}
+        response = requests.get(cards_url, params=key_and_token, data=arguments)
+        print(response)
+        json_response = response.json()
+        return json_response
+    
+    def to_list(self, json_response: list) -> list :
+        list_of_items =[]
+        for element in json_response:
+            list_of_items.append(element)
+        print(list_of_items)
+        
+        return list_of_items
               
     def object(self):
         Item.item_id = 'id'

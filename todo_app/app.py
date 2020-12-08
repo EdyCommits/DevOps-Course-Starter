@@ -10,7 +10,8 @@ api = TrelloAPI()
 @app.route('/')
 def index():
     trello = TrelloAPI()
-    items = trello.get_boards()
+    list_of_items = trello.get_list_of_items()
+    items = trello.to_list(list_of_items)
     print(items)
     return render_template('index.html', items=items)
 

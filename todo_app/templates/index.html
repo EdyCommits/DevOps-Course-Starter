@@ -10,9 +10,11 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Items</h2>
-      <ul class="list-group mb-4">
-          <li>{{ item }} </li>  
-      </ul>
+        <ul class="list-group mb-4">
+          {% for item in items %}  
+            <li>{{ item.name }} </li>  
+          {% endfor %} 
+        </ul>
     </div>
   </div>
   <div>
