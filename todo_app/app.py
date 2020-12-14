@@ -25,6 +25,12 @@ def post_item():
     api.add_item(title=title)
     return redirect('/')
 
+@app.route('/complete_item', methods=['GET'])
+def update_progress():
+    lists_on_board = api.get_lists(id)
+    lists = api.to_list(lists_on_board)
+    print(lists)
+    return render_template('update.html', lists=lists)
 
 
 if __name__ == '__main__':
