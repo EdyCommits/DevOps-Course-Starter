@@ -29,8 +29,9 @@ def post_item():
 @app.route('/complete_item', methods=["GET"])
 def update_progress():
     id = request.args['id']
+    task = request.args['name']
     
-    return render_template('update.html')
+    return render_template('update.html', task=task)
 
 
 if __name__ == '__main__':
