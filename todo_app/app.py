@@ -9,10 +9,11 @@ api = TrelloAPI()
 
 @app.route('/')
 def index():
-    list_of_items = api.get_list_of_items()
-    items = api.to_list(list_of_items)
-    print(items)
-    return render_template('index.html', items=items)
+    lists_on_board = api.get_lists()
+    for aList in lists_on_board:
+        list_id = aList['id']
+        aList['cards'] = api.get_cards_for_lists(list_id)
+    return render_template('index.html', items=lists_on_board)
 
 @app.route('/add', methods=['GET'])
 def add():
@@ -21,16 +22,15 @@ def add():
 @app.route('/add', methods=['POST'])
 def post_item():
     title = request.form.get('title')
-    print(title)
+    # print(title)
     api.add_item(title=title)
     return redirect('/')
 
-@app.route('/complete_item', methods=['GET'])
+@app.route('/complete_item', methods=["GET"])
 def update_progress():
-    lists_on_board = api.get_lists(id)
-    lists = api.to_list(lists_on_board)
-    print(lists)
-    return render_template('update.html', lists=lists)
+    id = request.args['id']
+    
+    return render_template('update.html')
 
 
 if __name__ == '__main__':

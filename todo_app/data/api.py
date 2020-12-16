@@ -17,11 +17,11 @@ class TrelloAPI():
         headers = {"Accept": "application/json"}
         arguments = {'fields': 'name', 'lists': 'open'}
         response = requests.get(boards_url, params=key_and_token, data=arguments)
-        print(response)
+        # print(response)
         json_response = response.json()
         
-        for board in json_response:
-            print(board['name'])
+        # for board in json_response:
+        #     print(board['name'])
         return json_response
     
     
@@ -32,27 +32,31 @@ class TrelloAPI():
         headers = {"Accept": "application/json"}
         arguments = {'fields': 'name', 'lists': 'open'}
         response = requests.get(cards_url, params=key_and_token, data=arguments)
-        print(response)
+        # print(response)
         json_response = response.json()
     
         return json_response
     
-    def get_lists(self, id): 
+    def get_lists(self): 
         lists_on_boards = self.get_list_of_items()
         boardId = "oIJEvych"
         lists_url = self.TRELLO_URL + '/boards/' + boardId + '/lists'
         headers = {"Accept": "application/json"}
         key_and_token = self.key_and_token
-        arguments = {'fields': 'name', 'lists': 'open'}
+        arguments = {'fields': 'name', 'lists': 'open',}
         response = requests.get(lists_url, params=key_and_token, data=arguments)
-        print(response)
+        lists = response.json()
+        print(lists)
+        return lists
+
+    def get_cards_for_lists(self, list_id):
+        cards_url = self.TRELLO_URL + '/lists/' + list_id + '/cards/'
+        key_and_token = self.key_and_token
+        arguments = {'fields': 'name', 'lists': 'open'}
+        response = requests.request("GET", cards_url, params=key_and_token,data=arguments)
         json_response = response.json()
-        
-        for board in json_response:
-            print(board['name'])
-            print(lists_on_boards)
+
         return json_response
- 
 
     def add_item(self, title):
         url = "https://api.trello.com/1/cards"
@@ -73,14 +77,12 @@ class TrelloAPI():
          params=query,
          data=arguments 
         )  
-        print(response.text)
+        # print(response.text)
 
     
-    def to_list(self, json_response: list) -> list :
-        list_of_items =[]
+    def to_list(self, json_response: list):
+        list_of_items = []
         for element in json_response:
             list_of_items.append(element)
-        print(list_of_items)
-        
-        return list_of_items
+            return list_of_items
               

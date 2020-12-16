@@ -9,10 +9,18 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2>Items</h2>
+      <h2>Lists</h2>
         <ul class="list-group mb-4">
           {% for item in items %}  
-            <li>{{ item.name }} </li>  
+            <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">{{ item['name'] }} </li>  
+              <ul class="list-group mb-4">
+                {% for card in item['cards'] %}  
+                  <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress', id=card['id'])}}"> Update </a> 
+                  </button>
+                  {% endfor %} 
+              </ul>
           {% endfor %} 
         </ul>
     </div>
