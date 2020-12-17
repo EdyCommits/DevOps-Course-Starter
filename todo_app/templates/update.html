@@ -15,11 +15,9 @@
   </div>
   <div>
     <button>
-      <a style=text-decoration:none href="{{url_for('add')}}"> Move to Doing </a> 
+      <a style=text-decoration:none href="{{url_for('move_to_in_progress')}}", method="PUT"> Move to Doing </a> 
     </button>
-    <button >
-      <a style=text-decoration:none href="{{url_for('add')}}"> Move to Done </a> 
-    </button>
+  
   </div>
 
 {% endblock %}

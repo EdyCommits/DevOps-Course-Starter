@@ -46,7 +46,6 @@ class TrelloAPI():
         arguments = {'fields': 'name', 'lists': 'open',}
         response = requests.get(lists_url, params=key_and_token, data=arguments)
         lists = response.json()
-        print(lists)
         return lists
 
     def get_cards_for_lists(self, list_id):
@@ -61,11 +60,8 @@ class TrelloAPI():
     def add_item(self, title):
         url = "https://api.trello.com/1/cards"
         id_list = '5fc54755646b4012c1387e8b'
-        query = {
-        'key': APIConfig.KEY,
-        'token': APIConfig.TOKEN,
-        'idList': id_list
-        }
+        key_and_token = self.key_and_token
+
         name = title
         description = 'I made this card using the Trello API :fist:'
 
@@ -74,12 +70,24 @@ class TrelloAPI():
         response = requests.request(
          "POST",
          url,
-         params=query,
+         params=key_and_token,
          data=arguments 
         )  
         # print(response.text)
-
-    
+        
+    def move_to_in_progress(self, card_id):
+        id_list = '5fd147d780c9d384ae4455d1'
+        url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
+        key_and_token = self.key_and_token
+        arguments = {'idList' : id_list}
+        response = requests.request(
+         "PUT",
+         url,
+         params=key_and_token,
+         data=arguments
+        )  
+     
+        
     def to_list(self, json_response: list):
         list_of_items = []
         for element in json_response:

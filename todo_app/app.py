@@ -15,6 +15,7 @@ def index():
         aList['cards'] = api.get_cards_for_lists(list_id)
     return render_template('index.html', items=lists_on_board)
 
+
 @app.route('/add', methods=['GET'])
 def add():
     return render_template('form.html')
@@ -26,12 +27,21 @@ def post_item():
     api.add_item(title=title)
     return redirect('/')
 
-@app.route('/complete_item', methods=["GET"])
+@app.route('/complete_items', methods=["GET", "PUT"])
 def update_progress():
-    id = request.args['id']
-    task = request.args['name']
-    
-    return render_template('update.html', task=task)
+    card_id = request.args['card_id']
+    name = request.args['name']
+    api.move_to_in_progress(card_id)    
+
+    return render_template('update.html', task=name)
+
+
+@app.route('/', methods=["PUT"])
+def move_to_in_progress():
+    card_id = request.args['card_id']
+    api.move_to_in_progress(card_id)    
+    return ("index.html")
+
 
 
 if __name__ == '__main__':
