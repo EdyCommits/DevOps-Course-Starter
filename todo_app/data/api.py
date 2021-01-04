@@ -17,11 +17,7 @@ class TrelloAPI():
         headers = {"Accept": "application/json"}
         arguments = {'fields': 'name', 'lists': 'open'}
         response = requests.get(boards_url, params=key_and_token, data=arguments)
-        # print(response)
         json_response = response.json()
-        
-        # for board in json_response:
-        #     print(board['name'])
         return json_response
     
     
@@ -32,7 +28,6 @@ class TrelloAPI():
         headers = {"Accept": "application/json"}
         arguments = {'fields': 'name', 'lists': 'open'}
         response = requests.get(cards_url, params=key_and_token, data=arguments)
-        # print(response)
         json_response = response.json()
     
         return json_response
@@ -61,19 +56,15 @@ class TrelloAPI():
         url = "https://api.trello.com/1/cards"
         id_list = '5fc54755646b4012c1387e8b'
         key_and_token = self.key_and_token
-
         name = title
         description = 'I made this card using the Trello API :fist:'
-
-        arguments = {'name': name,  'desc': description, 'idList' : id_list}
-        
+        arguments = {'name': name,  'desc': description, 'idList' : id_list} 
         response = requests.request(
          "POST",
          url,
          params=key_and_token,
          data=arguments 
         )  
-        # print(response.text)
         
     def move_to_in_progress(self, card_id):
         id_list = '5fd147d780c9d384ae4455d1'
@@ -86,7 +77,17 @@ class TrelloAPI():
          params=key_and_token,
          data=arguments
         )  
-     
+    
+    def delete(self, card_id):
+        card_id = card_id        
+        key_and_token = self.key_and_token
+        url = self.TRELLO_URL + '/cards/' + card_id 
+        response = requests.request(
+         "DELETE",
+         url, 
+         params=key_and_token,
+        )
+        
         
     def to_list(self, json_response: list):
         list_of_items = []

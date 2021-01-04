@@ -19,8 +19,11 @@
                   <button type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['id'], name=card['name'])}}"> Update </a> 
                   </button>
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('delete', card_id=card['id'])}}"> Delete </a> 
+                  </button>
       
-                  {% endfor %} 
+                {% endfor %} 
               </ul>
           {% endfor %} 
         </ul>
