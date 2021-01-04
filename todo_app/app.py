@@ -24,6 +24,7 @@ def add():
 def post_item():
     title = request.form.get('title')
     api.add_item(title=title)
+    
     return redirect('/')
 
 @app.route('/complete_items', methods=["GET", "PUT"])
@@ -38,7 +39,8 @@ def update_progress():
 @app.route('/', methods=["PUT"])
 def move_to_in_progress():
     card_id = request.args['card_id']
-    api.move_to_in_progress(card_id)    
+    api.move_to_in_progress(card_id)   
+     
     return ("index.html")
 
 @app.route('/delete', methods=["GET", "DELETE"])
