@@ -20,20 +20,7 @@ class TrelloAPI():
         json_response = response.json()
         return json_response
     
-    
-    def get_list_of_items(self):
-        boardId = "oIJEvych"
-        cards_url = self.TRELLO_URL + '/boards/' + boardId + '/cards/'
-        key_and_token = self.key_and_token
-        headers = {"Accept": "application/json"}
-        arguments = {'fields': 'name', 'lists': 'open'}
-        response = requests.get(cards_url, params=key_and_token, data=arguments)
-        json_response = response.json()
-    
-        return json_response
-    
     def get_lists(self): 
-        lists_on_boards = self.get_list_of_items()
         boardId = "oIJEvych"
         lists_url = self.TRELLO_URL + '/boards/' + boardId + '/lists'
         headers = {"Accept": "application/json"}
@@ -49,8 +36,8 @@ class TrelloAPI():
         arguments = {'fields': 'name', 'lists': 'open'}
         response = requests.get(cards_url, params=key_and_token,data=arguments)
         json_response = response.json()
-       
-        return json_response
+                   
+        return map(Card, json_response)
 
     def add_item(self, title):
         url = "https://api.trello.com/1/cards"
