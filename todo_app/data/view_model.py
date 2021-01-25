@@ -4,5 +4,5 @@ class ViewModel:
         self._items = items
     
     @property
-    def lists_on_board(self):
+    def items(self):
         return self._items

@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template, request
 from todo_app.flask_config import Config
 from todo_app.data.api import TrelloAPI
-
+from todo_app.data.view_model import ViewModel
 
 app = Flask(__name__)
 api = TrelloAPI()
@@ -12,7 +12,8 @@ def index():
     for aList in lists_on_board:
         list_id = aList['id']
         aList['cards'] = api.get_cards_for_lists(list_id)
-    return render_template('index.html', items=lists_on_board)
+    view_model = ViewModel(lists_on_board)
+    return render_template('index.html', view_model=view_model)
 
 
 @app.route('/add', methods=['GET'])
