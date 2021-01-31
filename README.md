@@ -36,10 +36,10 @@ The `.env` file is used by flask to set environment variables when running `flas
 1. Create an account on https://trello.com/signup.
 2. Generate an API key and token by following the instructions https://trello.com/app-key.
 4. In the project root copy the ```.env_template``` and name it ```.env ```.
-3. Copy the key a token and paste in .env file like so:
+3. Copy the key and token and paste in .env file like so:
 ```
 TRELLO_KEY=your_key
-TRELLO_TOKEN = your_token
+TRELLO_TOKEN =your_token
 ``` 
 
 ## Running the App
