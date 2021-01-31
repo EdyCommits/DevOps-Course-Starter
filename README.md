@@ -35,14 +35,12 @@ The `.env` file is used by flask to set environment variables when running `flas
 ## Adding Trello credentials
 1. Create an account on https://trello.com/signup.
 2. Generate an API key and token by following the instructions https://trello.com/app-key.
-4. Create ```config.py``` file in project root.
-3. Copy the key a token and paste in config.py file in this format: 
-
+4. In the project root copy the ```.env_template``` and name it ```.env ```.
+3. Copy the key a token and paste in .env file like so:
 ```
-class APIConfig():
-    KEY = "your key"
-    TOKEN = "your token"
-```
+TRELLO_KEY=your_key
+TRELLO_TOKEN = your_token
+``` 
 
 ## Running the App
 
