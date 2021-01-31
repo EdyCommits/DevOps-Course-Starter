@@ -15,7 +15,6 @@ def index():
     view_model = ViewModel(lists_on_board)
     return render_template('index.html', view_model=view_model)
 
-
 @app.route('/add', methods=['GET'])
 def add():
     return render_template('form.html')
