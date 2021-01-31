@@ -1,6 +1,6 @@
 from configparser import ConfigParser
+from todo_app.flask_config import Config
 from .boards import *
-from todo_app.config import *
 import os
 import requests
 
@@ -9,7 +9,7 @@ class TrelloAPI():
     TRELLO_URL = 'https://api.trello.com/1'
     
     def __init__(self):
-        self.key_and_token = {'key':APIConfig.KEY,'token':APIConfig.TOKEN}
+        self.key_and_token = {'key':Config.TRELLO_KEY,'token':Config.TRELLO_TOKEN}
     
     def get_boards(self):
         boards_url = self.TRELLO_URL + '/members/me/boards'
