@@ -10,6 +10,7 @@ class TrelloAPI():
     
     def __init__(self):
         self.key_and_token = {'key':Config.TRELLO_KEY,'token':Config.TRELLO_TOKEN}
+        self.boardId = Config.BOARD_ID
     
     def get_boards(self):
         boards_url = self.TRELLO_URL + '/members/me/boards'
@@ -21,7 +22,7 @@ class TrelloAPI():
         return json_response
     
     def get_lists(self): 
-        boardId = "oIJEvych"
+        boardId = self.boardId
         lists_url = self.TRELLO_URL + '/boards/' + boardId + '/lists'
         headers = {"Accept": "application/json"}
         key_and_token = self.key_and_token
