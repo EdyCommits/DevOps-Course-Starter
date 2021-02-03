@@ -39,7 +39,7 @@ The `.env` file is used by flask to set environment variables when running `flas
 3. Copy the key and token and paste in .env file like so:
 ```
 TRELLO_KEY=your_key
-TRELLO_TOKEN =your_token
+TRELLO_TOKEN=your_token
 ``` 
 
 ## Running the App
