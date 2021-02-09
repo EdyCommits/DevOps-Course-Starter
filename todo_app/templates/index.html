@@ -11,10 +11,9 @@
     <div class="col-md-12">
       <h2>Lists</h2>
         <ul class="list-group mb-4">
-          {% for item in view_model.items %}  
-            <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">{{ item['name'] }} </li>  
+          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">To Do</li>
+          {% for card in view_model.to_do_items %}  
               <ul class="list-group mb-4">
-                {% for card in item['cards'] %}  
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
                   <button type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Update </a> 
@@ -22,7 +21,34 @@
                   <button type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
                   </button>
-                {% endfor %} 
+              </ul>
+          {% endfor %} 
+        </ul>
+        <ul class="list-group mb-4">
+          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">In Progress</li>
+          {% for card in view_model.doing_items %}  
+              <ul class="list-group mb-4">
+                  <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Update </a> 
+                  </button>
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
+                  </button>
+              </ul>
+          {% endfor %} 
+        </ul>
+        <ul class="list-group mb-4">
+          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">Done</li>
+          {% for card in view_model.done_items %}  
+              <ul class="list-group mb-4">
+                  <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Update </a> 
+                  </button>
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
+                  </button>
               </ul>
           {% endfor %} 
         </ul>

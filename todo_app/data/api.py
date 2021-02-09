@@ -37,8 +37,7 @@ class TrelloAPI():
         arguments = {'fields': 'name', 'lists': 'open'}
         response = requests.get(cards_url, params=key_and_token,data=arguments)
         json_response = response.json()
-                   
-        return map(Card, json_response)
+        return list(map(Card, json_response))
 
     def add_item(self, title):
         url = "https://api.trello.com/1/cards"

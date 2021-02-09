@@ -10,8 +10,7 @@ api = TrelloAPI()
 def index():
     lists_on_board = api.get_lists()
     for aList in lists_on_board:
-        list_id = aList['id']
-        aList['cards'] = api.get_cards_for_lists(list_id)
+        aList['cards'] = api.get_cards_for_lists(aList['id'])
     view_model = ViewModel(lists_on_board)
     return render_template('index.html', view_model=view_model)
 
