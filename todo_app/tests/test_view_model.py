@@ -35,6 +35,22 @@ def test_number_of_done_items():
     vm = ViewModel([done_list])
     
     assert vm.count_done_items() == 2
+
+def test_show_all_done_items():
+    card1 = make_card('id 1', 'name 1')
+    card2 = make_card('id 2', 'name 2')
+    card3 = make_card('id 3', 'name 3')
+    card4 = make_card('id 4', 'name 4')
+    card5 = make_card('id 5', 'name 5')
+    
+    done_list = {'name': 'Done', 'cards': [card1, card2, card3, card4, card5]}
+    
+    vm = ViewModel([done_list])
+    
+    assert len(vm.show_all_done_items()) == len(done_list['cards'])
+
+    
+
     
 
 def make_card(identifier, name):

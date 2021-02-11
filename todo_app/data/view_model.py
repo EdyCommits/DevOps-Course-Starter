@@ -21,6 +21,9 @@ class ViewModel:
     def count_done_items(self):
         number_of_done_items = len(self.done_items)
         return number_of_done_items 
+    
+    def show_all_done_items(self):
+            return self.done_items
         
 
     def select(self, name, items):
