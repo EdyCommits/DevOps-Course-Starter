@@ -12,6 +12,8 @@ class TrelloAPI():
         self.key_and_token = {'key':Config.TRELLO_KEY,'token':Config.TRELLO_TOKEN}
         self.boardId = Config.BOARD_ID
         self.to_do_id = Config.TO_DO_ID
+        self.doing_id = Config.DOING_ID
+        self.done_id = Config.DONE_ID
     
     def get_boards(self):
         boards_url = self.TRELLO_URL + '/members/me/boards'
@@ -42,7 +44,6 @@ class TrelloAPI():
 
     def add_item(self, title):
         url = self.TRELLO_URL + '/cards'
-        # id_list = '5fc54755646b4012c1387e8b'
         id_list = self.to_do_id
         key_and_token = self.key_and_token
         name = title
@@ -51,15 +52,17 @@ class TrelloAPI():
         response = requests.post(url, params=key_and_token, data=arguments)  
         
     def move_to_in_progress(self, card_id):
-        id_list = '5fd147d780c9d384ae4455d1'
+        id_list = self.doing_id
         url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
         key_and_token = self.key_and_token
         arguments = {'idList' : id_list}
         response = requests.put(url, params=key_and_token, data=arguments) 
     
     def move_to_done(self, card_id):
-        id_list = '60217fe6b34350796ad4131e'
+        id_list = self.done_id
+        # id_list = '60217fe6b34350796ad4131e'
         url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
+        print(url)
         key_and_token = self.key_and_token
         arguments = {'idList' : id_list}
         response = requests.put(url, params=key_and_token, data=arguments)  
@@ -69,8 +72,6 @@ class TrelloAPI():
         key_and_token = self.key_and_token
         url = self.TRELLO_URL + '/cards/' + card_id 
         response = requests.delete(url, params=key_and_token)
-    
-        
         
     def to_list(self, json_response: list):
         list_of_items = []
