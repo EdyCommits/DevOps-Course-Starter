@@ -16,7 +16,10 @@
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
                   <button type="button" style="width: fit-content;">
-                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Update </a> 
+                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Move to in Progress </a> 
+                  </button>
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
                   </button>
                   <button type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
@@ -30,7 +33,10 @@
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
                   <button type="button" style="width: fit-content;">
-                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Update </a> 
+                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Move to in Progress </a> 
+                  </button>
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
                   </button>
                   <button type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
@@ -44,7 +50,10 @@
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
                   <button type="button" style="width: fit-content;">
-                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Update </a> 
+                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Move to in Progress </a> 
+                  </button>
+                  <button type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
                   </button>
                   <button type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 

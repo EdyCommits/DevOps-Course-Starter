@@ -7,5 +7,6 @@ class Config:
     TRELLO_KEY = os.environ.get('TRELLO_KEY')
     TRELLO_TOKEN = os.environ.get('TRELLO_TOKEN')
     BOARD_ID = os.environ.get('BOARD_ID')
+    TO_DO_ID = os.environ.get('TO_DO_ID')
     if not SECRET_KEY:
         raise ValueError("No SECRET_KEY set for Flask application. Did you follow the setup instructions?")

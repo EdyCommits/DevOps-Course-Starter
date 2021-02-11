@@ -34,10 +34,26 @@ def update_progress():
     return render_template('update.html', task=name)
 
 
+@app.route('/complete', methods=["GET", "PUT"])
+def update_progress_to_done():
+    card_id = request.args['card_id']
+    name = request.args['name']
+    api.move_to_done(card_id)   
+     
+    return render_template('done.html', task=name)
+
+
 @app.route('/', methods=["PUT"])
 def move_to_in_progress():
     card_id = request.args['card_id']
     api.move_to_in_progress(card_id)   
+     
+    return ("index.html")
+
+@app.route('/', methods=["PUT"])
+def move_to_done():
+    card_id = request.args['card_id']
+    api.move_to_done(card_id)   
      
     return ("index.html")
 

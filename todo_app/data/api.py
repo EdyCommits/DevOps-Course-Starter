@@ -6,11 +6,12 @@ import requests
 
 
 class TrelloAPI():
-    TRELLO_URL = 'https://api.trello.com/1'
     
     def __init__(self):
+        self.TRELLO_URL = 'https://api.trello.com/1'
         self.key_and_token = {'key':Config.TRELLO_KEY,'token':Config.TRELLO_TOKEN}
         self.boardId = Config.BOARD_ID
+        self.to_do_id = Config.TO_DO_ID
     
     def get_boards(self):
         boards_url = self.TRELLO_URL + '/members/me/boards'
@@ -40,8 +41,9 @@ class TrelloAPI():
         return list(map(Card, json_response))
 
     def add_item(self, title):
-        url = "https://api.trello.com/1/cards"
-        id_list = '5fc54755646b4012c1387e8b'
+        url = self.TRELLO_URL + '/cards'
+        # id_list = '5fc54755646b4012c1387e8b'
+        id_list = self.to_do_id
         key_and_token = self.key_and_token
         name = title
         description = 'I made this card using the Trello API :fist:'
@@ -53,6 +55,13 @@ class TrelloAPI():
         url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
         key_and_token = self.key_and_token
         arguments = {'idList' : id_list}
+        response = requests.put(url, params=key_and_token, data=arguments) 
+    
+    def move_to_done(self, card_id):
+        id_list = '60217fe6b34350796ad4131e'
+        url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
+        key_and_token = self.key_and_token
+        arguments = {'idList' : id_list}
         response = requests.put(url, params=key_and_token, data=arguments)  
     
     def delete(self, card_id):
@@ -60,6 +69,7 @@ class TrelloAPI():
         key_and_token = self.key_and_token
         url = self.TRELLO_URL + '/cards/' + card_id 
         response = requests.delete(url, params=key_and_token)
+    
         
         
     def to_list(self, json_response: list):
