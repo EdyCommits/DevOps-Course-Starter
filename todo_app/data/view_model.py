@@ -17,6 +17,12 @@ class ViewModel:
     @property
     def done_items(self):
         return self._done_items
+    
+    def count_done_items(self):
+        number_of_done_items = len(self.done_items)
+        return number_of_done_items 
+        
 
     def select(self, name, items):
         return reduce(lambda acc, e : acc + (e['cards'] if e['name'] == name else []), items, [])
+   

@@ -25,6 +25,17 @@ def test_to_do_items():
     assert vm.to_do_items == [card1]
     assert vm.doing_items == [card2]
     assert vm.done_items == [card3]
+    
+def test_number_of_done_items():
+    card1 = make_card('id 1', 'name 1')
+    card2 = make_card('id 2', 'name 2')
+    
+    done_list = {'name': 'Done', 'cards': [card1, card2]}
+    
+    vm = ViewModel([done_list])
+    
+    assert vm.count_done_items() == 2
+    
 
 def make_card(identifier, name):
     return Card({'id': identifier, 'name': name})

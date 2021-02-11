@@ -60,7 +60,6 @@ class TrelloAPI():
     
     def move_to_done(self, card_id):
         id_list = self.done_id
-        # id_list = '60217fe6b34350796ad4131e'
         url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
         print(url)
         key_and_token = self.key_and_token
