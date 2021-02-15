@@ -65,6 +65,21 @@ def test_recent_done_items():
     
     assert len(vm.recent_done_items()) == len(done_list['cards'])-1
     
+def test_older_done_items():
+    card1 = make_card('id 1', 'name 1', '2021-02-14')
+    card2 = make_card('id 2', 'name 2', '2021-02-15')
+    card3 = make_card('id 3', 'name 3', '2021-02-15')
+    card4 = make_card('id 4', 'name 4', '2021-02-15')
+    card5 = make_card('id 5', 'name 5', '2021-02-15')
+    card6 = make_card('id 6', 'name 6', '2021-02-15')
+
+    
+    done_list = {'name': 'Done', 'cards': [card1, card2, card3, card4, card5, card6]}
+    
+    vm = ViewModel([done_list])
+    
+    assert len(vm.older_done_items()) == 6
+    
 
 def make_card(identifier, name, last_edited ):
     return Card({'id': identifier, 'name': name, 'dateLastActivity': last_edited})

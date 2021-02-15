@@ -28,15 +28,26 @@ class ViewModel:
             return self.done_items
     
     def recent_done_items(self):
-        filtered_done_items = []        
+        recent_done_items = []        
         for item in self.done_items:
             item_last_updated =  parser.isoparse(item.last_updated).date()
             today = datetime.utcnow().date()
             if (item_last_updated == today):
-                filtered_done_items.append(item)
+                recent_done_items.append(item)
         
-        return filtered_done_items
-        
+        return recent_done_items
+    
+    def older_done_items(self):
+        older_done_items = []
+        for item in self.done_items:
+            item_last_updated =  parser.isoparse(item.last_updated).date()
+            today = datetime.utcnow().date()
+            number_of_items = self.count_done_items()
+           
+            if (number_of_items > 5):
+                older_done_items.append(item)
+      
+        return older_done_items
 
     def select(self, name, items):
         return reduce(lambda acc, e : acc + (e['cards'] if e['name'] == name else []), items, [])
