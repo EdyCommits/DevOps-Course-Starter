@@ -23,10 +23,10 @@ class ViewModel:
     def count_done_items(self):
         number_of_done_items = len(self.done_items)
         return number_of_done_items 
-    
+    @property
     def show_all_done_items(self):
             return self.done_items
-    
+    @property
     def recent_done_items(self):
         recent_done_items = []        
         for item in self.done_items:
@@ -36,7 +36,7 @@ class ViewModel:
                 recent_done_items.append(item)
         
         return recent_done_items
-    
+    @property
     def older_done_items(self):
         older_done_items = []
         for item in self.done_items:
