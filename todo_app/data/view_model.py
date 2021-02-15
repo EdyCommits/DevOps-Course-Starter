@@ -1,4 +1,6 @@
 from functools import reduce
+from datetime import datetime
+from dateutil import parser
 
 class ViewModel:
     def __init__(self, items):
@@ -24,6 +26,16 @@ class ViewModel:
     
     def show_all_done_items(self):
             return self.done_items
+    
+    def recent_done_items(self):
+        filtered_done_items = []        
+        for item in self.done_items:
+            item_last_updated =  parser.isoparse(item.last_updated).date()
+            today = datetime.utcnow().date()
+            if (item_last_updated == today):
+                filtered_done_items.append(item)
+        
+        return filtered_done_items
         
 
     def select(self, name, items):

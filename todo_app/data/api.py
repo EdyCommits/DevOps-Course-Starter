@@ -37,8 +37,7 @@ class TrelloAPI():
     def get_cards_for_lists(self, list_id):
         cards_url = self.TRELLO_URL + '/lists/' + list_id + '/cards/'
         key_and_token = self.key_and_token
-        arguments = {'fields': 'name', 'lists': 'open'}
-        response = requests.get(cards_url, params=key_and_token,data=arguments)
+        response = requests.get(cards_url, params=key_and_token)
         json_response = response.json()
         return list(map(Card, json_response))
 

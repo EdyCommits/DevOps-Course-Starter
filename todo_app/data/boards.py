@@ -20,8 +20,10 @@ class BoardStatus():
 class Card():
     identifier = ''
     name = ''
+    last_updated = ''
 
     def __init__(self, item_dict = {}):
         self.identifier = item_dict['id']
         self.name = item_dict['name']
+        self.last_updated = item_dict['dateLastActivity']
        
