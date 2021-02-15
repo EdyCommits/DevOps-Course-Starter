@@ -57,10 +57,19 @@ def move_to_done():
      
     return ("index.html")
 
+@app.route('/recent_done', methods=["GET"])
+def recent_done():
+    lists_on_board = api.get_lists()
+    for aList in lists_on_board:
+        aList['cards'] = api.get_cards_for_lists(aList['id'])
+    view_model = ViewModel(lists_on_board)
+    
+    return render_template('recent_done.html', view_model=view_model)
+
+    
 @app.route('/delete', methods=["GET", "DELETE"])
 def delete():
     card_id = request.args['card_id']
-    print(card_id)
     api.delete(card_id)   
     return redirect('/')
 

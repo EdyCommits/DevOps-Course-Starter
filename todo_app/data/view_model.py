@@ -23,19 +23,15 @@ class ViewModel:
     def count_done_items(self):
         number_of_done_items = len(self.done_items)
         return number_of_done_items 
-    @property
-    def show_all_done_items(self):
-            return self.done_items
-    @property
-    def recent_done_items(self):
+
+    def recent_done_items(self, today=datetime.utcnow().date()):
         recent_done_items = []        
         for item in self.done_items:
             item_last_updated =  parser.isoparse(item.last_updated).date()
-            today = datetime.utcnow().date()
             if (item_last_updated == today):
                 recent_done_items.append(item)
-        
         return recent_done_items
+    
     @property
     def older_done_items(self):
         older_done_items = []

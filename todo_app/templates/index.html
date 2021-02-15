@@ -44,8 +44,12 @@
               </ul>
           {% endfor %} 
         </ul>
+        <!-- done -->
         <ul class="list-group mb-4">
           <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">Done</li>
+            <button >
+              <a style=text-decoration:none href="{{url_for('recent_done')}}"> Recently Done Item </a> 
+            </button>
           {% for card in view_model.done_items %}  
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
