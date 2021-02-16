@@ -11,8 +11,8 @@
   <div class="row">
     <div class="col-md-12">         
         <ul class="list-group mb-4">
-          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px"> Recently Done Items</li>
-            {% for card in view_model.recent_done_items() %}  
+          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px"> Older Done Items</li>
+            {% for card in view_model.older_done_items() %}  
               <ul class="list-group mb-4">
                 <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>    
               </ul>
@@ -20,7 +20,4 @@
         </ul>    
     </div>
   </div>
-  <button >
-    <a style=text-decoration:none href="{{url_for('older_done_items')}}"> Older Items  </a> 
-  </button>
 {% endblock %}

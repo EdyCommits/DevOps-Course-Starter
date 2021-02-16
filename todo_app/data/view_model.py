@@ -32,17 +32,15 @@ class ViewModel:
                 recent_done_items.append(item)
         return recent_done_items
     
-    @property
-    def older_done_items(self):
-        older_done_items = []
+    def older_done_items(self, today=datetime.utcnow().date()):
+        older_done_items = []        
         for item in self.done_items:
             item_last_updated =  parser.isoparse(item.last_updated).date()
-            today = datetime.utcnow().date()
-            number_of_items = self.count_done_items()
-           
-            if (number_of_items > 5):
+            if (item_last_updated < today):
                 older_done_items.append(item)
-      
+                print(item_last_updated)
+                print(today)
+                print(older_done_items)
         return older_done_items
 
     def select(self, name, items):
