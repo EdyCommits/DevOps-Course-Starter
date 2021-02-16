@@ -66,6 +66,31 @@ def test_older_done_items():
     vm = ViewModel([done_list])
     
     assert vm.older_done_items(today) == [card1, card2, card3, card6]
+    
+def test_show_all_done_items():
+    card1 = make_card('id 1', 'name 1')
+    card2 = make_card('id 2', 'name 2')
+    card3 = make_card('id 3', 'name 3')
+    card4 = make_card('id 4', 'name 4')
+    
+    done_list = {'name': 'Done', 'cards': [card1, card2, card3, card4]}
+    
+    vm = ViewModel([done_list])
+    
+    assert vm.show_all_done_items == True
+    
+    card1 = make_card('id 1', 'name 1')
+    card2 = make_card('id 2', 'name 2')
+    card3 = make_card('id 3', 'name 3')
+    card4 = make_card('id 4', 'name 4')
+    card5 = make_card('id 5', 'name 5')
+    
+    done_list = {'name': 'Done', 'cards': [card1, card2, card3, card4, card5]}
+    
+    vm = ViewModel([done_list])
+    
+    assert vm.show_all_done_items == False
+    
      
 
 def make_card(identifier, name, last_edited='2021-02-15'):

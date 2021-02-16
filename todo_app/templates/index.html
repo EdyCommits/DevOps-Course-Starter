@@ -33,9 +33,6 @@
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
                   <button type="button" style="width: fit-content;">
-                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Move to in Progress </a> 
-                  </button>
-                  <button type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
                   </button>
                   <button type="button" style="width: fit-content;">
@@ -47,23 +44,20 @@
         <!-- done -->
         <ul class="list-group mb-4">
           <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">Done</li>
-            <button >
-              <a style=text-decoration:none href="{{url_for('recent_done')}}"> Recently Done Item </a> 
-            </button>
+          {% if view_model.show_all_done_items == true %}
           {% for card in view_model.done_items %}  
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
-                  <button type="button" style="width: fit-content;">
-                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Move to in Progress </a> 
-                  </button>
-                  <button type="button" style="width: fit-content;">
-                    <a style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
-                  </button>
                   <button type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
                   </button>
               </ul>
           {% endfor %} 
+          {% else %}
+          <button >
+            <a style=text-decoration:none href="{{url_for('recent_done')}}"> Recently Done Item </a> 
+          </button>
+          {% endif %} 
         </ul>
     </div>
   </div>
