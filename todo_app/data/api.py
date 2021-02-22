@@ -9,11 +9,11 @@ class TrelloAPI():
     
     def __init__(self):
         self.TRELLO_URL = 'https://api.trello.com/1'
-        self.key_and_token = {'key':Config.TRELLO_KEY,'token':Config.TRELLO_TOKEN}
-        self.boardId = Config.BOARD_ID
-        self.to_do_id = Config.TO_DO_ID
-        self.doing_id = Config.DOING_ID
-        self.done_id = Config.DONE_ID
+        self.key_and_token = {'key':Config().TRELLO_KEY,'token':Config().TRELLO_TOKEN}
+        self.boardId = Config().BOARD_ID
+        self.to_do_id = Config().TO_DO_ID
+        self.doing_id = Config().DOING_ID
+        self.done_id = Config().DONE_ID
     
     def get_boards(self):
         boards_url = self.TRELLO_URL + '/members/me/boards'
@@ -39,6 +39,7 @@ class TrelloAPI():
         key_and_token = self.key_and_token
         response = requests.get(cards_url, params=key_and_token)
         json_response = response.json()
+        print(json_response)
         return list(map(Card, json_response))
 
     def add_item(self, title):

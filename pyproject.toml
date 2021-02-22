@@ -12,6 +12,10 @@ requests = "^2.25.0"
 pytest = "^6.2.2"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+selenium = "^3.141.0"
+selenium-requests = "^1.3"
+mock = "^4.0.3"
 
 [build-system]
 requires = ["poetry>=0.12"]
