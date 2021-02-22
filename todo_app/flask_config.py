@@ -11,5 +11,5 @@ class Config:
     DOING_ID = os.environ.get('DOING_ID')
     DONE_ID = os.environ.get('DONE_ID')
 
-    if not SECRET_KEY:
-        raise ValueError("No SECRET_KEY set for Flask application. Did you follow the setup instructions?")
+    # if not SECRET_KEY:
+    #     raise ValueError("No SECRET_KEY set for Flask application. Did you follow the setup instructions?")
