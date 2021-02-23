@@ -16,18 +16,30 @@ def client():
     with test_app.test_client() as client:
         yield client
         
-def test_index_page(client):
-    response = client.get('/')
- 
-  
 @patch('requests.get')
 def test_index_page(mock_get_requests, client):
-    # Replace call to requests.get(url) with our ownfunction
     mock_get_requests.side_effect = mock_get_lists
     response = client.get('/')
 
     assert response.status_code == 200
    
+        
+@patch('requests.get')
+def test_index_page(mock_get_requests, client):
+    mock_get_requests.side_effect = mock_get_lists
+    response = client.get('/')
+
+    assert response.status_code == 200
+
+@patch('requests.get')
+def test_add_page(mock_get_requests, client):
+    mock_get_requests.side_effect = mock_get_lists
+    response = client.get('/add')
+
+    html_string = str(response.data)
+    assert 'New Task' in html_string
+    assert response.status_code == 200
+    
 def mock_get_lists(url, params, data=None):
     list_id = os.environ.get('TO_DO_ID')
     sample_trello_lists_response = [{'id' : list_id, 'name' : "to_do"}]
@@ -36,7 +48,6 @@ def mock_get_lists(url, params, data=None):
     BOARD_ID = os.environ.get('BOARD_ID')
     if url == f'https://api.trello.com/1/boards/{BOARD_ID}/lists':
         response = Mock()
-          # sample_trello_lists_response should point to some test response data
         response.json.return_value = sample_trello_lists_response
         return response
     if url == f'https://api.trello.com/1/lists/5fc54755646b4012c1387e8b/cards/':
