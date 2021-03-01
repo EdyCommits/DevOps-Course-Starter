@@ -24,6 +24,24 @@ class TrelloAPI():
         json_response = response.json()
         return json_response
     
+    def create_board(self, name):
+        name = name 
+        url = "https://api.trello.com/1/boards/"
+        key_and_token = self.key_and_token
+        arguments = { 'name': name}
+        response = requests.request( "POST", url, params=key_and_token, data=arguments)
+        json_response = response.json()
+
+        print(json_response)
+        return json_response
+    
+    def delete_board(self, board_id):
+        board_id = board_id 
+        url = "https://api.trello.com/1/boards/{board_id}"
+        key_and_token = self.key_and_token
+        response = requests.delete(url, params=key_and_token)
+       
+    
     def get_lists(self): 
         boardId = self.boardId
         lists_url = self.TRELLO_URL + '/boards/' + boardId + '/lists'
