@@ -39,7 +39,6 @@ class TrelloAPI():
         key_and_token = self.key_and_token
         response = requests.get(cards_url, params=key_and_token)
         json_response = response.json()
-        print(json_response)
         return list(map(Card, json_response))
 
     def add_item(self, title):
@@ -54,6 +53,7 @@ class TrelloAPI():
     def move_to_in_progress(self, card_id):
         id_list = self.doing_id
         url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
+
         key_and_token = self.key_and_token
         arguments = {'idList' : id_list}
         response = requests.put(url, params=key_and_token, data=arguments) 
@@ -61,7 +61,6 @@ class TrelloAPI():
     def move_to_done(self, card_id):
         id_list = self.done_id
         url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
-        print(url)
         key_and_token = self.key_and_token
         arguments = {'idList' : id_list}
         response = requests.put(url, params=key_and_token, data=arguments)  
