@@ -14,11 +14,11 @@ def create_test_board():
     api = TrelloAPI()
     name = "Test Board"
     test_board = api.create_board(name)
-    print(test_board.get('id'))
     return test_board.get('id')
 
 def delete_temp_board(board_id):
     api = TrelloAPI()
+    board_id = board_id 
     api.delete_board(board_id)
     
 @pytest.fixture(scope='module')
@@ -29,7 +29,6 @@ def test_app():
     
     # Create the new board & update the board id environment variable
     board_id = create_test_board()
-    print(board_id)
     os.environ['BOARD_ID'] = board_id    
     
     # construct the new application
@@ -53,6 +52,12 @@ def driver():
 def test_task_journey(driver, test_app):
     driver.get('http://localhost:5000/')
     assert driver.title == 'To-Do App'
-
+  
+    button = driver.find_element_by_name("button")
+    button.click()
+    assert ('/add' in driver.page_source)
     
+    driver.get('http://localhost:5000/add')
+    assert driver.title == 'Add Task'
+  
     

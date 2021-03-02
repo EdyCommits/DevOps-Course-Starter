@@ -37,7 +37,7 @@ class TrelloAPI():
     
     def delete_board(self, board_id):
         board_id = board_id 
-        url = "https://api.trello.com/1/boards/{board_id}"
+        url = "https://api.trello.com/1/boards/" + board_id
         key_and_token = self.key_and_token
         response = requests.delete(url, params=key_and_token)
        
