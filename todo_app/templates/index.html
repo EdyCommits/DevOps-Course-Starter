@@ -11,7 +11,7 @@
     <div class="col-md-12">
       <h2>Lists</h2>
         <ul class="list-group mb-4">
-          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">To Do</li>
+          <li id="to_do" style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">To Do</li>
           {% for card in view_model.to_do_items %}  
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  

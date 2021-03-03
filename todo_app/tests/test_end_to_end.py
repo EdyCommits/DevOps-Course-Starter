@@ -50,7 +50,8 @@ def driver():
         yield driver
         
 def test_task_journey(driver, test_app):
-    driver.get('http://localhost:5000/')
+    home_url = 'http://localhost:5000/'
+    driver.get(home_url)
     assert driver.title == 'To-Do App'
   
     button = driver.find_element_by_name("button")
@@ -59,5 +60,17 @@ def test_task_journey(driver, test_app):
     
     driver.get('http://localhost:5000/add')
     assert driver.title == 'Add Task'
-  
+    
+    form = driver.find_element_by_id('form')
+    input_filed = form.find_element_by_name("title")
+    input_filed.send_keys('test task')
+    button = driver.find_element_by_name("button")
+    button.click()
+    
+    home_url = 'http://localhost:5000/'
+    home_page = driver.get(home_url)
+    assert driver.title == 'To-Do App'    
+    assert ('test task' in driver.page_source)
+
+
     
