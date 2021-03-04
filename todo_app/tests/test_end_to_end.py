@@ -39,11 +39,7 @@ def test_app():
     
     os.environ['BOARD_ID'] = board_id    
     os.environ['TO_DO_ID'] = list_id    
-    # os.environ['DOING_ID'] = list_id    
-    # os.environ['DONE_ID'] = list_id    
-
-
-    
+     
     # construct the new application
     application = app.create_app()
 
