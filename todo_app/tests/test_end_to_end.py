@@ -16,6 +16,12 @@ def create_test_board():
     test_board = api.create_board(name)
     return test_board.get('id')
 
+def create_test_list(board_id):
+    api = TrelloAPI()
+    name = "To Do"
+    test_list = api.create_list(name, board_id)
+    return test_list.get('id')
+
 def delete_temp_board(board_id):
     api = TrelloAPI()
     board_id = board_id 
@@ -29,7 +35,14 @@ def test_app():
     
     # Create the new board & update the board id environment variable
     board_id = create_test_board()
+    list_id = create_test_list(board_id)
+    
     os.environ['BOARD_ID'] = board_id    
+    os.environ['TO_DO_ID'] = list_id    
+    # os.environ['DOING_ID'] = list_id    
+    # os.environ['DONE_ID'] = list_id    
+
+
     
     # construct the new application
     application = app.create_app()
@@ -40,6 +53,7 @@ def test_app():
     thread.start()
     yield app
     
+    print("tear down")
     # Tear Down
     thread.join(1)
     delete_temp_board(board_id)
@@ -58,7 +72,6 @@ def test_task_journey(driver, test_app):
     button.click()
     assert ('/add' in driver.page_source)
     
-    driver.get('http://localhost:5000/add')
     assert driver.title == 'Add Task'
     
     form = driver.find_element_by_id('form')
@@ -66,11 +79,27 @@ def test_task_journey(driver, test_app):
     input_filed.send_keys('test task')
     button = driver.find_element_by_name("button")
     button.click()
-    
-    home_url = 'http://localhost:5000/'
-    home_page = driver.get(home_url)
-    assert driver.title == 'To-Do App'    
     assert ('test task' in driver.page_source)
 
+    
+    button = driver.find_element_by_name("move_to_doing")
+    button.click()
+    
+    button = driver.find_element_by_name("move_to_doing")
+    button.click()
+    
+    button = driver.find_element_by_name("move_to_done")
+    button.click()
+    
+    button = driver.find_element_by_name("move_to_done")
+    button.click()
 
+ #check item deleted
+    button = driver.find_element_by_name("delete")
+    button.click()
+    print(driver.page_source)
+    assert ('test task' not in driver.page_source)
+
+
+    
     
