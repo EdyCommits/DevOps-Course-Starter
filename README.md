@@ -73,6 +73,11 @@ Install test libraries:
 
 ```
 pip install -U pytest
+pip install -U mock
+pip install -U requests_mock
+pip install -U selenium
+pip install -U selenium-requests
+poetry add pytest selenium selenium-requests mock --dev
 ```
 To run the tests:
 ```
