@@ -71,14 +71,8 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 
 Install test libraries:
 
-```
-pip install -U pytest
-pip install -U mock
-pip install -U requests_mock
-pip install -U selenium
-pip install -U selenium-requests
-poetry add pytest selenium selenium-requests mock --dev
-```
+Install webdriver: https://chromedriver.chromium.org/getting-started
+
 To run the tests:
 ```
 poetry run pytest
