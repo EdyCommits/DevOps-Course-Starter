@@ -49,7 +49,6 @@ def test_app():
     thread.start()
     yield app
     
-    print("tear down")
     # Tear Down
     thread.join(1)
     delete_temp_board(board_id)
@@ -93,7 +92,6 @@ def test_task_journey(driver, test_app):
  #check item deleted
     button = driver.find_element_by_name("delete")
     button.click()
-    print(driver.page_source)
     assert ('test task' not in driver.page_source)
 
 

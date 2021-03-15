@@ -14,10 +14,6 @@ class TrelloAPI():
         self.to_do_id = Config().TO_DO_ID
         self.doing_id = Config().DOING_ID
         self.done_id = Config().DONE_ID
-        print("API board id:")
-        print(Config().BOARD_ID)
-        print("API to do id:")
-        print(Config().TO_DO_ID)
 
     def get_boards(self):
         boards_url = self.TRELLO_URL + '/members/me/boards'
@@ -35,8 +31,6 @@ class TrelloAPI():
         arguments = { 'name': name}
         response = requests.request( "POST", url, params=key_and_token, data=arguments)
         json_response = response.json()
-
-        print(json_response)
         return json_response
     
     def delete_board(self, board_id):
@@ -51,13 +45,9 @@ class TrelloAPI():
         arguments = { 'name': name , 'idBoard': board_id}
         response = requests.request( "POST", url, params=key_and_token, data=arguments)
         json_response = response.json()
-
-        print(json_response)
         return json_response
         
     def get_lists(self): 
-        print("get lists board id:")
-        print(self.boardId)
         boardId = self.boardId
         lists_url = self.TRELLO_URL + '/boards/' + boardId + '/lists'
         headers = {"Accept": "application/json"}
@@ -65,7 +55,6 @@ class TrelloAPI():
         arguments = {'fields': 'name', 'lists': 'open' }
         response = requests.get(lists_url, params=key_and_token, data=arguments)
         lists = response.json()
-        print(lists)
         return lists
 
     def get_cards_for_lists(self, list_id):
@@ -73,7 +62,6 @@ class TrelloAPI():
         key_and_token = self.key_and_token
         response = requests.get(cards_url, params=key_and_token)
         json_response = response.json()
-        print(json_response)
         return list(map(Card, json_response))
 
     def add_item(self, title):
@@ -88,7 +76,6 @@ class TrelloAPI():
     def move_to_in_progress(self, card_id):
         id_list = self.doing_id
         url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
-
         key_and_token = self.key_and_token
         arguments = {'idList' : id_list}
         response = requests.put(url, params=key_and_token, data=arguments) 
