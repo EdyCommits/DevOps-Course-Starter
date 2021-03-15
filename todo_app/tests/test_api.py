@@ -38,12 +38,13 @@ def mock_get_lists(url, params, data=None):
     sample_trello_cards_response = [{'id' : "card_id", 'name' : "to_do", 'dateLastActivity' : 'date'}]
     
     BOARD_ID = os.environ.get('BOARD_ID')
+    TO_DO_ID = os.environ.get('TO_DO_ID')
     
     if url == f'https://api.trello.com/1/boards/{BOARD_ID}/lists':
         response = Mock()
         response.json.return_value = sample_trello_lists_response
         return response
-    if url == f'https://api.trello.com/1/lists/5fc54755646b4012c1387e8b/cards/':
+    if url == f'https://api.trello.com/1/lists/{TO_DO_ID}/cards/':
         response = Mock()
         response.json.return_value = sample_trello_cards_response
         return response
