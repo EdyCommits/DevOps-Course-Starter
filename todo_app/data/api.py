@@ -75,14 +75,14 @@ class TrelloAPI():
         
     def move_to_in_progress(self, card_id):
         id_list = self.doing_id
-        url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
+        url = self.TRELLO_URL + '/cards/' + card_id + '?idList='
         key_and_token = self.key_and_token
         arguments = {'idList' : id_list}
         response = requests.put(url, params=key_and_token, data=arguments) 
     
     def move_to_done(self, card_id):
         id_list = self.done_id
-        url = self.TRELLO_URL + '/cards/' + card_id + '?idList=' + id_list
+        url = self.TRELLO_URL + '/cards/' + card_id + '?idList='
         key_and_token = self.key_and_token
         arguments = {'idList' : id_list}
         response = requests.put(url, params=key_and_token, data=arguments)  
