@@ -55,7 +55,7 @@ def test_app():
     
 @pytest.fixture(scope="module")
 def driver():
-    with webdriver.Chrome("/usr/local/bin/chromedriver") as driver:
+    with webdriver.Chrome() as driver:
         yield driver
         
 def test_task_journey(driver, test_app):
