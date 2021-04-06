@@ -15,13 +15,13 @@
           {% for card in view_model.to_do_items %}  
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
-                  <button type="button" style="width: fit-content;">
-                    <a name="move_to_doing" style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Move to in Progress </a> 
+                  <button name="move_to_doing" type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Move to in Progress </a> 
                   </button>
                   <button type="button" style="width: fit-content;">
-                    <a name="move_to_done" style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
+                    <a id="move_to_done" style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
                   </button>
-                  <button name="delete" type="button" style="width: fit-content;">
+                  <button id="delete" type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
                   </button>
               </ul>
@@ -32,10 +32,10 @@
           {% for card in view_model.doing_items %}  
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
-                  <button type="button" style="width: fit-content;">
+                  <button id="move_to_done" type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
                   </button>
-                  <button name="delete" type="button" style="width: fit-content;">
+                  <button id="delete" type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
                   </button>
               </ul>
@@ -48,7 +48,7 @@
           {% for card in view_model.done_items %}  
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
-                  <button  name="delete" type="button" style="width: fit-content;">
+                  <button id="delete" type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
                   </button>
               </ul>
@@ -57,13 +57,13 @@
           {% for card in view_model.recent_done_items() %}  
               <ul class="list-group mb-4">
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
-                  <button name="delete"  type="button" style="width: fit-content;">
+                  <button id="delete"  type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
                   </button>
               </ul>
             {% endfor %} 
             <button >
-              <a style=text-decoration:none href="{{url_for('older_done_items')}}"> Older Items  </a> 
+              <a style=text-decoration:none href="{{url_for('older_done_items')}}"> Older Items </a> 
             </button>
           {% endif %} 
         </ul>

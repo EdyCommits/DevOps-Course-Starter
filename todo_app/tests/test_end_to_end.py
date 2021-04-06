@@ -79,12 +79,20 @@ def test_task_journey(driver, test_app):
     
     button = driver.find_element_by_name("move_to_doing")
     button.click()
-
-    button = driver.find_element_by_name("move_to_done")
+    
+    button = driver.find_element_by_name("move_to_doing")
     button.click()
     
+    driver.get(home_url)
+    
+    button = driver.find_element_by_id("move_to_done")
+    button.click()
+    
+    button = driver.find_element_by_id("move_to_done")
+    button.click()
+
  #check item deleted
-    button = driver.find_element_by_name("delete")
+    button = driver.find_element_by_id("delete")
     button.click()
     assert ('test task' not in driver.page_source)
 
