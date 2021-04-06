@@ -5,18 +5,10 @@ description = "A simple ToDo app for your DevOps apprenticeship"
 authors = []
 
 [tool.poetry.dependencies]
-python = "^3.7"
-flask = "^1.1.2"
-python-dotenv = "^0.14.0"
-requests = "^2.25.0"
-pytest = "^6.2.2"
-python-dateutil = "^2.8.1"
-requests-mock = "^1.8.0"
 selenium = "^3.141.0"
 selenium-requests = "^1.3"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.2"
 selenium = "^3.141.0"
 selenium-requests = "^1.3"
 mock = "^4.0.3"
