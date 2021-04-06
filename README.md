@@ -68,6 +68,7 @@ You should see output similar to the following:
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
 ## Running the Tests
+If you do not have Chrome installed get it here https://support.google.com/chrome/answer/95346?co=GENIE.Platform%3DDesktop&hl=en-GB
 
 Install test libraries:
 
