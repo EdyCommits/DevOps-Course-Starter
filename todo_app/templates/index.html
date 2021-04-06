@@ -11,26 +11,66 @@
     <div class="col-md-12">
       <h2>Lists</h2>
         <ul class="list-group mb-4">
-          {% for item in items %}  
-            <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">{{ item['name'] }} </li>  
+          <li id="to_do" style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">To Do</li>
+          {% for card in view_model.to_do_items %}  
               <ul class="list-group mb-4">
-                {% for card in item['cards'] %}  
                   <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
-                  <button type="button" style="width: fit-content;">
-                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Update </a> 
+                  <button name="move_to_doing" type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress', card_id=card['identifier'], name=card['name'])}}"> Move to in Progress </a> 
                   </button>
                   <button type="button" style="width: fit-content;">
+                    <a id="move_to_done" style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
+                  </button>
+                  <button id="delete" type="button" style="width: fit-content;">
                     <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
                   </button>
-    
-                {% endfor %} 
               </ul>
           {% endfor %} 
+        </ul>
+        <ul class="list-group mb-4">
+          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">In Progress</li>
+          {% for card in view_model.doing_items %}  
+              <ul class="list-group mb-4">
+                  <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
+                  <button id="move_to_done" type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('update_progress_to_done', card_id=card['identifier'], name=card['name'])}}"> Move to Done </a> 
+                  </button>
+                  <button id="delete" type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
+                  </button>
+              </ul>
+          {% endfor %} 
+        </ul>
+        <!-- done -->
+        <ul class="list-group mb-4">
+          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px">Done</li>
+          {% if view_model.show_all_done_items == true %}
+          {% for card in view_model.done_items %}  
+              <ul class="list-group mb-4">
+                  <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
+                  <button id="delete" type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
+                  </button>
+              </ul>
+          {% endfor %} 
+          {% else %}
+          {% for card in view_model.recent_done_items() %}  
+              <ul class="list-group mb-4">
+                  <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>  
+                  <button id="delete"  type="button" style="width: fit-content;">
+                    <a style="text-decoration:none" href="{{url_for('delete', card_id=card['identifier'])}}"> Delete </a> 
+                  </button>
+              </ul>
+            {% endfor %} 
+            <button >
+              <a style=text-decoration:none href="{{url_for('older_done_items')}}"> Older Items </a> 
+            </button>
+          {% endif %} 
         </ul>
     </div>
   </div>
   <div>
-    <button >
+    <button name="button">
       <a style=text-decoration:none href="{{url_for('add')}}"> Add Item </a> 
     </button>
   </div>

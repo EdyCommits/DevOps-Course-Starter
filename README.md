@@ -35,14 +35,18 @@ The `.env` file is used by flask to set environment variables when running `flas
 ## Adding Trello credentials
 1. Create an account on https://trello.com/signup.
 2. Generate an API key and token by following the instructions https://trello.com/app-key.
-4. Create ```config.py``` file in project root.
-3. Copy the key a token and paste in config.py file in this format: 
-
+3. In the project root copy the ```.env_template``` and name it ```.env ```.
+4. Copy the key and token and paste in .env file.
+5. Add values to .env for the following:
 ```
-class APIConfig():
-    KEY = "your key"
-    TOKEN = "your token"
-```
+SECRET_KEY=
+TRELLO_KEY=
+TRELLO_TOKEN=
+BOARD_ID=
+TO_DO_ID=
+DOING_ID=
+DONE_ID=
+``` 
 
 ## Running the App
 
@@ -62,3 +66,15 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Running the Tests
+If you do not have Chrome installed get it here https://support.google.com/chrome/answer/95346?co=GENIE.Platform%3DDesktop&hl=en-GB
+
+Install test libraries:
+
+Install webdriver: https://chromedriver.chromium.org/getting-started
+
+To run the tests:
+```
+poetry run pytest
+```

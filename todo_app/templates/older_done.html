@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+{% block title %}To-Do App{% endblock %}
+
+{% block content %}
+  <div class="jumbotron">
+    <h1 class="display-4">To-Do App</h1>
+    <p class="lead">Just another to-do app.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">         
+        <ul class="list-group mb-4">
+          <li style="color: blue; font-size: 35px;"><p style="color:blue; margin:0, size=20px"> Older Done Items</li>
+            {% for card in view_model.older_done_items() %}  
+              <ul class="list-group mb-4">
+                <li style="color: blue; font-size: 25px;">{{ card['name'] }} </li>    
+              </ul>
+            {% endfor %} 
+        </ul>    
+    </div>
+  </div>
+{% endblock %}
