@@ -76,18 +76,21 @@ def test_task_journey(driver, test_app):
     button.click()
     assert ('test task' in driver.page_source)
 
-    
     button = driver.find_element_by_name("move_to_doing")
+    #click redirects to /complete_items? endpoint
     button.click()
     
+    #clicks in /complete_items? endpoint
     button = driver.find_element_by_name("move_to_doing")
     button.click()
     
     driver.get(home_url)
     
     button = driver.find_element_by_id("move_to_done")
+    #click redirects to /complete? endpoint
     button.click()
     
+    #click in /complete? endpoint
     button = driver.find_element_by_id("move_to_done")
     button.click()
 
