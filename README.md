@@ -79,7 +79,7 @@ To run the tests:
 poetry run pytest
 ```
 
-## Using Vagrant
+## Using Vagrant
 
 You can create a new Hypervisor installed with your app and in running mode.
 
