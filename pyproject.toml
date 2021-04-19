@@ -9,7 +9,6 @@ selenium = "^3.141.0"
 selenium-requests = "^1.3"
 
 [tool.poetry.dev-dependencies]
-mock = "^4.0.3"
 
 [build-system]
 requires = ["poetry>=0.12"]
