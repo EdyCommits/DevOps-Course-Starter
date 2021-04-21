@@ -28,15 +28,15 @@ Vagrant.configure("2") do |config|
 	
 	
   SHELL
-  
+  config.vm.network "forwarded_port", guest: 5000, host: 1111
   config.trigger.after :up do |trigger|
-	trigger.name = "Launching App"
-	trigger.info = "Running the TODO app setup script"
+	trigger.name = "Launching TODO app"
+	trigger.info = "Running the app setup script"
 	trigger.run_remote = { privileged: false, inline: "
 		# Install dependencies and launch
 		cd /vagrant
 		poetry install
-		poetry run flask run --host 0.0.0.0
+		nohup poetry run flask run --host 0.0.0.0 > logs.txt 2>&1 &
 				
 	"}
 	end
