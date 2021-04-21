@@ -86,8 +86,10 @@ You can create a new Hypervisor installed with your app and in running mode.
 * Download and install VirtualBox on your host https://www.virtualbox.org/wiki/Downloads
 * Download and install Vagrant: https://www.vagrantup.com/downloads
 * Open a shell
-* Go to the root of your TODO app
-* Run the following on your command line to create the virtual machine with the TODO app installed and running:
+* Go to the root of your to_do app
+* Run the following on your command line to create 
 ```
 vagrant up --provision
 ```
+* Go to localhost:1111 in your browser
+
