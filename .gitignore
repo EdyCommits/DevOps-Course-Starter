@@ -117,3 +117,6 @@ env/
 
 ### Configuration files ###
 .env
+.vagrant
+
+logs.txt

@@ -94,7 +94,7 @@ def test_task_journey(driver, test_app):
     button = driver.find_element_by_id("move_to_done")
     button.click()
 
- #check item deleted
+    #check item deleted
     button = driver.find_element_by_id("delete")
     button.click()
     assert ('test task' not in driver.page_source)
