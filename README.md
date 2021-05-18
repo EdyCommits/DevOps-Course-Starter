@@ -91,3 +91,17 @@ vagrant up --provision
 ```
 * Go to localhost:1111 in your browser
 
+
+## Running Docker
+
+* Install Docker Desktop https://docs.docker.com/docker-for-windows/install/
+
+* Build docker image
+```
+docker build --target development --tag todo-app:dev . 
+```
+* Run docker image
+```
+docker run todo-app:dev
+```
+

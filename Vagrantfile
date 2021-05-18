@@ -36,7 +36,14 @@ Vagrant.configure("2") do |config|
 		cd /vagrant
 		poetry install
 		nohup poetry run flask run --host 0.0.0.0 > logs.txt 2>&1 &
-				
+
+		# uncomment the below if you want to run flask instead of gunicorn
+		# poetry run flask run --host 0.0.0.0
+		
+		# Run gunicorn
+		. .env
+		poetry run gunicorn -b 0.0.0.0:5000 'todo_app.app:create_app()' --daemon --access-logfile gunicorn-access.log --log-file gunicorn.log -e TRELLO_API_KEY=$TRELLO_API_KEY -e TRELLO_API_SECRET=$TRELLO_API_SECRET -e TRELLO_USER=$TRELLO_USER -e TRELLO_BOARD_NAME=$TRELLO_BOARD_NAME
+	
 	"}
 	end
 end
