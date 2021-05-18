@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
 	
 	
   SHELL
-  config.vm.network "forwarded_port", guest: 5000, host: 1111
+  config.vm.network "forwarded_port", guest: 5000, host: 80
   config.trigger.after :up do |trigger|
 	trigger.name = "Launching TODO app"
 	trigger.info = "Running the app setup script"
